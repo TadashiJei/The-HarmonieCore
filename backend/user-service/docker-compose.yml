@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongo:27017/harmoniecore_users
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - harmoniecore
+
+  mongo:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=harmoniecore2024
+      - MONGO_INITDB_DATABASE=harmoniecore_users
+    restart: unless-stopped
+    networks:
+      - harmoniecore
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass harmoniecore2024
+    restart: unless-stopped
+    networks:
+      - harmoniecore
+
+  # MongoDB Express for database management
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=harmoniecore2024
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:harmoniecore2024@mongo:27017/
+    depends_on:
+      - mongo
+    networks:
+      - harmoniecore
+
+  # Redis Commander for Redis management
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    ports:
+      - "8082:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379:harmoniecore2024
+    depends_on:
+      - redis
+    networks:
+      - harmoniecore
+
+volumes:
+  mongo_data:
+  redis_data:
+
+networks:
+  harmoniecore:
+    driver: bridge
