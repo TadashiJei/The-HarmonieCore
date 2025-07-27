@@ -1,0 +1,43 @@
+{
+  "name": "harmoniecore-notification-service",
+  "version": "1.0.0",
+  "description": "Ultra-optimized notification service for HarmonieCore Web3 platform",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "notifications",
+    "web3",
+    "artists",
+    "real-time",
+    "mobile-optimized"
+  ],
+  "author": "HarmonieCore Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "redis": "^4.6.7",
+    "nodemailer": "^6.9.4",
+    "twilio": "^4.15.0",
+    "web-push": "^3.6.3",
+    "firebase-admin": "^11.10.1",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0",
+    "helmet": "^7.0.0",
+    "cors": "^2.8.5",
+    "express-rate-limit": "^6.8.1",
+    "joi": "^17.9.2",
+    "node-cron": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
+  }
+}

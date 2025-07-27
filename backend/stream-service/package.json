@@ -1,0 +1,40 @@
+{
+  "name": "harmoniecore-stream-service",
+  "version": "1.0.0",
+  "description": "WebRTC streaming service for HarmonieCORE",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "lint": "eslint src/",
+    "build": "tsc"
+  },
+  "keywords": [
+    "webrtc",
+    "streaming",
+    "live",
+    "music"
+  ],
+  "author": "HarmonieCORE Team",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "rate-limiter-flexible": "^2.4.2",
+    "redis": "^4.6.7",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "eslint": "^8.45.0",
+    "jest": "^29.6.2",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.1.4"
+  }
+}

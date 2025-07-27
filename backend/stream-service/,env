@@ -1,0 +1,36 @@
+# Server Configuration
+PORT=3001
+NODE_ENV=development
+
+# Redis Configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+# FREE STUN/TURN Servers
+# Google STUN (always free)
+STUN_SERVER_URL=stun:stun.l.google.com:19302
+STUN_SERVER_URL_2=stun:stun1.l.google.com:19302
+STUN_SERVER_URL_3=stun:stun2.l.google.com:19302
+
+# FREE TURN Options (choose one):
+# Option 1: Open Relay Project (FREE)
+TURN_SERVER_URL=turn:openrelay.metered.ca:80
+TURN_USERNAME=openrelayproject
+TURN_PASSWORD=openrelayproject
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Logging
+LOG_LEVEL=info
+LOG_FILE=logs/stream-service.log
+
+# Security
+JWT_SECRET=your_jwt_secret_here
+CORS_ORIGIN=http://localhost:3000
+
+# Monitoring
+HEALTH_CHECK_INTERVAL=30000
+METRICS_PORT=3002
